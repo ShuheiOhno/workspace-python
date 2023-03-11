@@ -4,3 +4,5 @@ from email.mime import MINEText
 from email.header import Header
 from email import charset
 
+#各種情報
+account = ''
