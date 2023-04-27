@@ -13,7 +13,7 @@ print("""\
 """)
 
 # インデックス
-word ='abcdeb'
+word ='abcdeb is string'
 print(word[1])
 print(word[0])
 print(word[-1])
@@ -34,3 +34,15 @@ print(word.rfind('b'))
 
 # bがいくつあるかカウント
 print(word.count('b'))
+
+# 最初の文字だけ大文字に変換
+print(word.capitalize())
+# 単語の最初の文字を大文字に変換
+print(word.title())
+# すべて大文字に変換
+print(word.upper())
+# すべて大文字に変換
+print(word.lower())
+
+# リプレイス
+print(word.replace('b', '777'))
