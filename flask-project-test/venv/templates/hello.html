@@ -8,5 +8,11 @@
 </head>
 <body>
     <h1>HTML {{ val }} {{ secondval }}</h1>
+    <ul>
+        {% for element in elements %}
+            <li>{{ element }}</li>
+        {% endfor %}
+        <li></li>
+    </ul>
 </body>
 </html>
