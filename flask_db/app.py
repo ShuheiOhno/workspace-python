@@ -29,12 +29,14 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(12))
 
 @app.route('/', methods=['GET', 'POST'])
+@login_required
 def index():
     if request.method == 'GET':
         posts = Post.query.all()
     return render_template('index.html', posts=posts)
 
 @app.route('/create', methods=['GET', 'POST'])
+@login_required
 def create():
     if request.method == 'POST':
         title_form = request.form.get('title')
@@ -49,6 +51,7 @@ def create():
         return render_template('create.html')
     
 @app.route('/<int:id>/update', methods=['GET', 'POST'])
+@login_required
 def update(id):
     post = Post.query.get(id)
     if request.method == 'GET':
@@ -61,6 +64,7 @@ def update(id):
         return redirect('/')
     
 @app.route('/<int:id>/delete', methods=['GET'])
+@login_required
 def delete(id):
     post = Post.query.get(id)
 
