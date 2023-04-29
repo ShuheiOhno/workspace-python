@@ -30,3 +30,10 @@ def html():
 @app.route("/valuesend/<value>/<secondvalue>")
 def valuesend(value, secondvalue):
     return render_template("hello.html", val=value,secondval=secondvalue)
+
+# テンプレートに値を渡す(配列使用)
+arr = ['値1','値2','値3','値4','値5','値6','値7','値8','値9']
+
+@app.route("/array")
+def valuesend():
+    return render_template("hello.html", elements=arr)
