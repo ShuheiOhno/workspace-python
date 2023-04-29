@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
@@ -15,7 +16,12 @@ def hello2():
 def hello3():
     return 'Hello, World!3'
 
-# ルーティング（共通部分あり）
+# ルーティング（共通部分あり） 可変式
 @app.route("/japan/<city>")
 def tokyo(city):
     return f"Hello, {city} in Japan!!!"
+
+# ｈｔｍｌ テンプレートファイル
+@app.route("/html")
+def html():
+    return render_template('hello.html')
