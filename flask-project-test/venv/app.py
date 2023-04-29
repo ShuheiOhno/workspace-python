@@ -27,6 +27,6 @@ def html():
     return render_template('hello.html')
 
 # テンプレートに値を渡す
-@app.route("/valuesend/<value>")
-def valuesend(value):
-    return render_template("hello.html", value=value)
+@app.route("/valuesend/<value>/<secondvalue>")
+def valuesend(value, secondvalue):
+    return render_template("hello.html", val=value,secondval=secondvalue)
