@@ -28,6 +28,10 @@ class User(UserMixin, db.Model):
     title = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(12))
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
