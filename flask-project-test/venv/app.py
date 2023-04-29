@@ -34,6 +34,6 @@ def valuesend(value, secondvalue):
 # テンプレートに値を渡す(配列使用)
 arr = ['値1','値2','値3','値4','値5','値6','値7','値8','値9']
 
-@app.route("/array")
-def valuesend():
+@app.route("/array123")
+def arr123():
     return render_template("hello.html", elements=arr)
