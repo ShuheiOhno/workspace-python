@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, LoginManager
+from flask_login import UserMixin, LoginManager, login_user
 
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
@@ -71,27 +71,29 @@ def delete(id):
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        title_form = request.form.get('title')
-        body_form = request.form.get('body')
+        username = request.form.get('title')
+        password = request.form.get('body')
 
-        post = Post(title=title_form, body=body_form)
+        user = User(username=username, password=generate_password_hash(password, method='sha256'))
 
-        db.session.add(post)
+        db.session.add(user)
         db.session.commit()
-        return redirect('/')
+        return redirect('/login')
     else:
-        return render_template('create.html')
+        return render_template('signup.html')
     
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        title_form = request.form.get('title')
-        body_form = request.form.get('body')
+        username = request.form.get('title')
+        password = request.form.get('body')
 
-        post = Post(title=title_form, body=body_form)
+        user = User.query.fillter_by(username=username).first()
+        if check_password_hash(user.password, password):
+            login_user(user)
+            return redirect('/')
+        else:
+            return redirect('/login')
 
-        db.session.add(post)
-        db.session.commit()
-        return redirect('/')
     else:
-        return render_template('create.html')
+        return render_template('login.html')
