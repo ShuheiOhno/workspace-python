@@ -33,3 +33,19 @@ def create():
         return redirect('/')
     else:
         return render_template('create.html')
+    
+@app.route('/<int:id>/update', methods=['GET', 'POST'])
+def update(id):
+    post = Post.query.get(id)
+    if request.method == 'GET':
+        return render_template('update.html',post=post)
+    else:
+        title_form = request.form.get('title')
+        body_form = request.form.get('body')
+
+        post = Post(title=title_form, body=body_form)
+
+        db.session.add(post)
+        db.session.commit()
+        return redirect('/')
+        return render_template('create.html')
