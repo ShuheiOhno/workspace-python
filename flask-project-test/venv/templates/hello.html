@@ -10,7 +10,9 @@
     <h1>HTML {{ val }} {{ secondval }}</h1>
     <ul>
         {% for element in elements %}
-            <li>{{ element }}</li>
+            {% if loop.index % 3 != 0 %}
+                <li>{{ element, loop.index }}</li>
+            {%endif %}
         {% endfor %}
     </ul>
 </body>
