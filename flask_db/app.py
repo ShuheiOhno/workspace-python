@@ -2,6 +2,8 @@ from flask import Flask
 from flask import render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager
+
+from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
 from datetime import datetime
@@ -65,3 +67,31 @@ def delete(id):
     db.session.delete(post)
     db.session.commit()
     return redirect('/')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        title_form = request.form.get('title')
+        body_form = request.form.get('body')
+
+        post = Post(title=title_form, body=body_form)
+
+        db.session.add(post)
+        db.session.commit()
+        return redirect('/')
+    else:
+        return render_template('create.html')
+    
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        title_form = request.form.get('title')
+        body_form = request.form.get('body')
+
+        post = Post(title=title_form, body=body_form)
+
+        db.session.add(post)
+        db.session.commit()
+        return redirect('/')
+    else:
+        return render_template('create.html')
