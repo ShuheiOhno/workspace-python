@@ -25,7 +25,7 @@ class Post(db.Model):
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(30), unique=True)
+    username = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(12))
 
 @login_manager.user_loader
@@ -79,8 +79,8 @@ def delete(id):
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        username = request.form.get('title')
-        password = request.form.get('body')
+        username = request.form.get('username')
+        password = request.form.get('password')
 
         user = User(username=username, password=generate_password_hash(password, method='sha256'))
 
