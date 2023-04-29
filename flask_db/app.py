@@ -93,10 +93,10 @@ def signup():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form.get('title')
-        password = request.form.get('body')
+        username = request.form.get('username')
+        password = request.form.get('password')
 
-        user = User.query.fillter_by(username=username).first()
+        user = User.query.filter_by(username=username).first()
         if check_password_hash(user.password, password):
             login_user(user)
             return redirect('/')
