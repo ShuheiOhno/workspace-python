@@ -46,3 +46,11 @@ print(word.lower())
 
 # リプレイス
 print(word.replace('b', '777'))
+
+# △format
+str = '{1} {0} {2}'.format(1,2,3)
+print(str)
+
+# fstring
+x,y,z = 1,2,3
+print(f'f-string is {x} {y} {z}')
