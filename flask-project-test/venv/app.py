@@ -14,3 +14,8 @@ def hello2():
 @app.route('/hello3')
 def hello3():
     return 'Hello, World!3'
+
+# ルーティング（共通部分あり）
+@app.route("/japan/<city>")
+def tokyo(city):
+    return f"Hello, {city} in Japan!!!"
