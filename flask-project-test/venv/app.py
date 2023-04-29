@@ -25,3 +25,8 @@ def tokyo(city):
 @app.route("/html")
 def html():
     return render_template('hello.html')
+
+# テンプレートに値を渡す
+@app.route("/valuesend/<value>")
+def valuesend(value):
+    return render_template("hello.html", value=value)
