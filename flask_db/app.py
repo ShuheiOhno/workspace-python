@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, LoginManager, login_user
+from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required
 
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
@@ -94,6 +94,11 @@ def login():
             return redirect('/')
         else:
             return redirect('/login')
-
     else:
         return render_template('login.html')
+    
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect('/login')
