@@ -1,3 +1,6 @@
+import boto3
+import uuid
+
 from flask import Flask
 from flask import render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -23,6 +26,15 @@ class File(db.Model):
 def index():
     if request.method == "POST":
         uploaded_file = request.files["file-to-save"]
+        if not allowd_file(uploaded_file.filename):
+            return "FILE NOT ALLOWED"
+
+        new_filename = uuid.uuid4().hex + '.' + uploaded_file.filename.rsplit('.', 1)[1].lower()
+        bucket_name = "boto-test202030430-01"
+
+        s3 = boto3.resource("s3")
+        s3.Bucket(bucket_name).upload_fileobj(uploaded_file, new_filename)
+    
         return redirect(url_for("index"))
     
     files = File.query.all()
