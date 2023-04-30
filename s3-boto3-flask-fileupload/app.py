@@ -36,7 +36,7 @@ def index():
         s3.Bucket(bucket_name).upload_fileobj(uploaded_file, new_filename)
 
         # DBを使用しない場合不要
-        file = File(original_filname=uploaded_file.filename, filename=new_filename, bucket=bucket_name, regio="ap-northeast-1")
+        file = File(original_filname=uploaded_file.filename, filename=new_filename, bucket=bucket_name, region="ap-northeast-1")
         db.session.add(file)
         db.session.commit()
         # ここまで
