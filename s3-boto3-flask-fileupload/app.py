@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -12,3 +13,7 @@ class File(db.Model):
     bucket = db.Column(db.String(100))
     region = db.Column(db.String(100))
 
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    return render_template("index.html")
