@@ -9,8 +9,12 @@ list
 
 {% block content %}
 {% for item in object_list %}
+<div class="alert alert-{{ item.priority }}" role="alert">
+    <p>{{item.title}}</p>
+    <button type="button" class="btn btn-info">編集</button>
+    <button type="button" class="btn btn-success">削除</button>
+    <button type="button" class="btn btn-primary">詳細</button>
+</div>
 
-{{item.title}}
-{{item.memo}}
 {% endfor %}
 {% endblock content %}
