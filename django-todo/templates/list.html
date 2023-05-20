@@ -8,13 +8,16 @@ list
 {% endblock header %}
 
 {% block content %}
+<a href="{% url 'create'%}">新規作成</a>
 {% for item in object_list %}
 <div class="alert alert-{{ item.priority }}" role="alert">
     <p>{{item.title}}</p>
+    <a href="{% url 'update' item.pk%}">編集リンク</a>
     <button type="button" class="btn btn-info">編集</button>
+    <a href="{% url 'delete' item.pk %}">削除リンク</a>
     <button type="button" class="btn btn-success">削除</button>
+    <a href="{% url 'detail' item.pk %}">詳細リンク</a>
     <button type="button" class="btn btn-primary">詳細</button>
 </div>
-
 {% endfor %}
 {% endblock content %}
