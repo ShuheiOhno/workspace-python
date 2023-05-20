@@ -9,7 +9,7 @@ def hellofunction(request):
 
 # クラスベース
 class HelloWorldClass(TemplateView):
-    template_name = 'hello.html'
+    template_name = 'hello.html' #必須
 
 # 確認用
 def checkview(request):
