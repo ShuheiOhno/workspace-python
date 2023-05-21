@@ -133,3 +133,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # 画像保存パス
 MEDIA_ROOT = BASE_DIR / 'images'
 MEDIA_URL = 'images/'
+
+#ログイン用 login_requiredで使用 name='login'にリダイレクト
+LOGIN_URL = 'login'
