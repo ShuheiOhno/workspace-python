@@ -123,6 +123,13 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# staticファイル
+STATIC_ROOT = BASE_DIR / 'staticfiles' #本番環境にデプロイするときに使用する
+
+import os
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATICFILES_DIRS = [str(BASE_DIR / 'static')]
+
 # 画像保存パス
 MEDIA_ROOT = BASE_DIR / 'images'
 MEDIA_URL = 'images/'
