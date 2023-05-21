@@ -4,6 +4,8 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from .models import BoardModel
 from django.contrib.auth.decorators import login_required, permission_required
+from django.views.generic import CreateView #クラスベース
+from django.urls import reverse_lazy
 
 
 # テスト用
@@ -53,3 +55,23 @@ def goodfunc(request, pk):
     object.good += 1
     object.save()
     return redirect('list')
+
+#現実的ではない
+def readfunc(request, pk):
+    object = BoardModel.objects.get(pk=pk)
+    username = request.user.get_username()
+    print(username)
+    if username in object.readtext:
+        return redirect('list')
+    else:
+        object.read += 1
+        object.readtext += object.readtext + ' ' + username
+        object.save()
+        return redirect('list')
+    
+# クラスベース
+class BoardCreate(CreateView):
+    template_name = 'create.html'
+    model = BoardModel
+    fields = ('title', 'content', 'author', 'sns_image')
+    success_url = reverse_lazy('list')
