@@ -22,3 +22,7 @@ def monthly_challenge(request, month):
         return HttpResponseNotFound("This month is not supported.")
 
     return HttpResponse(challenge_text)
+
+
+def test():
+    return "fff"
