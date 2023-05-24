@@ -27,19 +27,13 @@ def monthly_chanllenge_by_number(request, month):
     return HttpResponse(month)
 
 def monthly_challenge(request, month):
-    challenge_text = None
-    print(request)
-    if month == "january":
-        challenge_text = "january"
-    elif month == "february":
-        challenge_text = "february"
-        print('aaa')
-    elif month == "march":
-        challenge_text = "march"
-    else:
+    try:
+        challenge_text = monthly_challenges[month]
+        return HttpResponse(challenge_text)
+    except:
         return HttpResponseNotFound("This month is not supported.")
-
-    return HttpResponse(challenge_text)
+    
+ 
 
 
 def test():
