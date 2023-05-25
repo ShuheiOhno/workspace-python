@@ -9,9 +9,10 @@ from django.urls import reverse
 # def february(request):
 #     return HttpResponse("Fabruary")
 
+
 monthly_challenges = {
-    "january": "1月",
-    "february": "2月",
+    "january": "this is 1月",
+    "february": "this is 2月",
     "march": "3月",
     "april": "4月",
     "may": "5月",
@@ -23,6 +24,18 @@ monthly_challenges = {
     "november": "11月",
     "december": "12月",
 }
+
+def index(request):
+    list_items = ""
+    months = list(monthly_challenges.keys())
+
+    for month in months:
+        capitalized_month = month.capitalize()
+        month_path = reverse("month-challenge", args=[month])
+        list_items += f"<li><a href=\"{month_path}\">{capitalized_month}</a></li>"
+
+    response_data = f"<ul>{list_items}</ul>"
+    return HttpResponse(response_data)
 
 def monthly_chanllenge_by_number(request, month):
     months = list(monthly_challenges.keys()) #list() ほかのデータ型をリスト型に変換
