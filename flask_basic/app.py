@@ -25,6 +25,11 @@ def userid(user_id):
     return '<h1>ID:{0}</h1>'.format(user_id)
     # return '<h1>ID  :{0} {1} {2}</h1>'.format(user_id[0],user_id[1],user_id[2]) #error
 
+
+@app.errorhandler(404)
+def error_404(error):
+    return render_template('error_pages/404.html'), 404 #カスタマイズしたエラーページ
+
 if __name__ == '__main__': #このファイルをスクリプトとして実行した場合(インポートされた場合の実行を防ぐため、など)
     # app.run(debug=True)
     app.run()
