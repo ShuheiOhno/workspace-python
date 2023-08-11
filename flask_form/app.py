@@ -13,7 +13,7 @@ class RegistrationForm(FlaskForm):
     pass_confirm = PasswordField('パスワード（確認）')
     submit = SubmitField('登録')
 
-@app.route('/register', method=['GET','POST'])
+@app.route('/register', methods=['GET','POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
