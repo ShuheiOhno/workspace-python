@@ -9,6 +9,13 @@ def index():
     value = "test"
     return render_template('index.html', value_after=value) #ふつうは=前後は同じ名前
 
+@app.route('/product')
+def product():
+    product_list = ["computer1","computer2","computer3"]
+    product_dict = {"product_name":"computer1","product_price":"30000", "Product_maker":"maker100"}
+
+    return render_template('product.html', products=product_list, product_dict=product_dict)
+
 @app.route('/test')
 def test():
     return 'aaa'
