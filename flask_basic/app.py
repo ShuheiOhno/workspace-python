@@ -6,6 +6,10 @@ app = Flask(__name__) #アプリケーションオブジェクト __name__：現
 def index():
     return '<h1>Hello World</h1>'
 
+@app.route('/test')
+def test():
+    return 'aaa'
+
 if __name__ == '__main__': #このファイルをスクリプトとして実行した場合(インポートされた場合の実行を防ぐため、など)
     app.run()
 
