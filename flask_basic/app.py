@@ -1,11 +1,12 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__) #アプリケーションオブジェクト __name__：現在のファイルのモジュール名が入る
 
 #View関数
 @app.route('/')
 def index():
-    return '<h1>Hello World</h1>'
+    # return '<h1>Hello World</h1>'
+    return render_template('index.html')
 
 @app.route('/test')
 def test():
