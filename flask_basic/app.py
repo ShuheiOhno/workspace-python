@@ -20,6 +20,15 @@ def product():
 def test():
     return 'aaa'
 
+@app.route('/user')
+def user():
+    user_list = [
+        ["1", "user1", "aaa@aaa.com", "1"],
+        ["2", "user2", "bbb@bbb.com", "0"],
+        ["3", "user3", "ccc@ccc.com", "0"],
+    ]
+    return render_template('user.html', users=user_list)
+
 @app.route('/user/<user_id>')
 def userid(user_id):
     return '<h1>ID:{0}</h1>'.format(user_id)

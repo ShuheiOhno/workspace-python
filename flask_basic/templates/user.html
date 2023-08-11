@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>User List</h1>
+
+
+<ul>
+    {% for user in users %}
+        ID:{{ user[0] }}    
+        名前：{{ user[1] }}
+        メール：{{user[2]}}
+        権限：
+        {% if user[3] == "1" %}
+            管理者
+        {% else %}
+            一般
+        {% endif %}
+        <br>
+    {% endfor %}
+</ul>
+
+{% endblock %}
