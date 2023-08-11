@@ -7,7 +7,7 @@ app = Flask(__name__) #アプリケーションオブジェクト __name__：現
 def index():
     # return '<h1>Hello World</h1>'
     value = "test"
-    return render_template('index.html', value_after=value)
+    return render_template('index.html', value_after=value) #ふつうは=前後は同じ名前
 
 @app.route('/test')
 def test():
